@@ -1,0 +1,14 @@
+---
+- hosts: "{{ hosts }}"
+  become: true
+  #gather_facts: no
+  tasks:
+  - name: create dir /var/tmp/prueba_when
+    file: 
+      path: /var/tmp/prueba_when
+      state: directory
+    when: ansible_default_ipv4 == "192.168.17.101"
+  - name: mostrar contenido de variable
+    debug: 
+      msg: "{{ ansible_default_ipv4.interface }}"
+

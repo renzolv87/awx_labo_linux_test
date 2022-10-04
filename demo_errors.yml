@@ -1,0 +1,12 @@
+---
+- hosts: "{{ hosts }}"
+  become: true
+  tasks:
+  - name: conectar al apache
+    uri:
+      url: "http://{{ hosts }}"
+    ignore_errors: true
+  - name: crear directorio
+    file:
+      name: /var/tmp/test
+      state: directory
