@@ -1,13 +1,21 @@
 ---
-- hosts: web
+- hosts: "{{ hosts }}"
   become: true
   tasks:
-  - name: lanzo un mensaje
-    debug:
-      msg: "servidores web"
-- hosts: bd
-  become: true
-  tasks:
-  - name: lanzo un mensaje
-    debug:
-      msg: "servidores bd"
+    - name: install apache
+      package: 
+        name: httpd
+        state: latest
+    - name: start and enable httpd
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+    - name: create index.html
+      file:
+        path: /var/www/html/index.html
+        state: touch
+    - name: add a line to index.html
+      copy:
+        content: "Hello World!"
+        dest: /var/www/html/index.html

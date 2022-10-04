@@ -1,0 +1,12 @@
+--- 
+- hosts: all
+  become: true
+  serial:
+  - 1
+  - 2
+  - 50%
+  max_fail_percentage: 20
+  tasks:
+  - name: curl 
+    uri:
+      url: "http://{{ inventory_hostname }}"

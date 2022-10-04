@@ -1,0 +1,12 @@
+---
+- hosts: "{{ hosts }}"
+  become: true
+  tasks:
+  - name: creamos template
+    template:
+      src: "/var/tmp/linux_file.conf.j2"
+      dest: "/var/tmp/file.conf"
+      owner: root
+      group: root
+      mode: '0664'
+      backup: yes

@@ -1,0 +1,29 @@
+---
+- hosts: "{{ hosts }}"
+  become: true
+  handlers:
+    - name: restart apache
+      service:
+        name: httpd
+        state: restarted
+      listen: "restart web"
+    - name: instalar telnet
+      package:
+        name: telnet
+        state: present
+      listen: "telnet"
+  tasks:
+    - name: create dir /opt/www
+      file: 
+        path: /opt/www
+        state: directory
+      notify: "restart web"
+    - name: change config
+      replace: 
+        path: /etc/httpd/conf/httpd.conf
+        regexp: '^DocumentRoot.*$'
+        replace: 'DocumentRoot "/opt/www"'
+        backup: yes
+      notify: "restart web"
+    
+    
