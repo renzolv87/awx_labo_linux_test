@@ -1,0 +1,9 @@
+---
+# tasks file for apache
+- import_tasks: lin_apache/install.yml
+  tags: apache_install
+
+- import_tasks: lin_apache/configure.yml
+  tags: apache_config
+
+    

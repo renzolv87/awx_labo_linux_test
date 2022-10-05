@@ -1,6 +1,9 @@
 --- 
 - hosts: all
   become: true
+  vars:
+    pepe: 2
+    var: 1
   serial:
   - 1
   - 2
@@ -10,3 +13,4 @@
   - name: curl 
     uri:
       url: "http://{{ inventory_hostname }}"
+    

@@ -1,0 +1,15 @@
+- name: printar contenido variable
+  debug:
+    msg: "var_formacion: {{ var_formacion }}"
+
+- name: instalar apache
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ apache_packages }}"
+
+- name: inicie el servicio y persistente al reboot
+  service:
+    name: "{{ apache_service }}"
+    state: started
+    enabled: yes

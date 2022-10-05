@@ -1,0 +1,7 @@
+---
+- hosts: "{{ hosts }}"
+  become: true
+  vars:
+    var_formacion: "variable definida en playbook apache.yml"
+  roles:
+  - apache
